@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>À deux · invitation</title>
+<meta name="description" content="Un puzzle de logique avec des loutres, à jouer avec tes amis.">
+<meta name="robots" content="noindex">
+<style>
+  :root { --bg: #FBF6EC; --card: #FFFDF8; --line: #EADFCF; --ink: #4A3428; --muted: #8A7563; --sage: #8DB08A; --sage-dark: #76996F; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 440px; margin: 0 auto; padding: 32px 18px 40px; text-align: center; }
+  .card { background: var(--card); border: 2px solid var(--line); border-radius: 28px; padding: 28px 22px 26px; }
+  img { width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto 6px; }
+  h1 { font-size: 27px; line-height: 1.2; margin: 10px 0 6px; }
+  p { margin: 0 0 18px; color: var(--muted); }
+  .play { display: block; background: var(--sage); color: #fff; text-decoration: none; font-weight: 700; font-size: 20px; padding: 16px 18px; border-radius: 999px; box-shadow: 0 4px 0 var(--sage-dark); }
+  .play:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--sage-dark); }
+  .code { margin-top: 22px; font-size: 15px; }
+  .code b { display: inline-block; letter-spacing: .25em; font-size: 20px; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: 12px; padding: 4px 10px 4px 14px; margin-top: 6px; }
+  footer { margin-top: 22px; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <img src="loutres.png" alt="Deux loutres qui se tiennent la patte" width="540" height="300">
+    <h1 id="title">Ton ami t'invite sur À deux</h1>
+    <p>Un puzzle de logique avec des loutres.</p>
+    <a class="play" id="play" href="https://play.google.com/store/apps/details?id=com.arcailstudio.together">Installer sur Google Play</a>
+    <div class="code" id="code" hidden>Tu as déjà le jeu ? Il s'ouvre tout seul.<br>Sinon, ajoute ce code dans Amis :<br><b id="value"></b></div>
+  </div>
+  <footer>Arcail² Studio · <a href="https://arcail2studio.github.io/Together-privacy/">Confidentialité</a></footer>
+</main>
+<script>
+  // Beta 2 of À deux (the referral): the friend code and name from the link; the Play Store keeps the code for the game to read
+  // at its first launch (Install Referrer: referrer=c%3D<code>). The code is checked against the game's alphabet before use.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var code = (q.get("c") || "").toUpperCase();
+    var name = (q.get("n") || "").trim().slice(0, 24);
+    if (!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) return;
+    if (name) document.getElementById("title").textContent = name + " t'invite sur À deux";
+    document.getElementById("play").href = "https://play.google.com/store/apps/details?id=com.arcailstudio.together&referrer=" + encodeURIComponent("c=" + code);
+    document.getElementById("value").textContent = code;
+    document.getElementById("code").hidden = false;
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.arcailstudio.together",
+      "sha256_cert_fingerprints": [
+        "F8:C5:D9:00:36:0D:13:CC:99:8A:7B:11:D4:47:B9:F6:4F:D0:3D:F1:A8:B6:C3:8B:DC:AB:FE:E1:9D:5C:EC:D0",
+        "89:C6:58:1C:73:E9:AE:92:8D:2F:BF:05:04:77:40:D6:C1:84:8C:E3:B2:5A:49:F2:E4:5B:C8:11:46:2A:D4:D7"
+      ]
+    }
+  }
+]
